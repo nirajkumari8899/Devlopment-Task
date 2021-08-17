@@ -1,0 +1,31 @@
+public class AccountHandlarClass {
+   set<Id> accountIds = new set<Id>();
+      list<Account> listOfContactUpdate = new list<Account>();
+    public void afetrInsert(list<contact> newList){  
+        for(Contact con :newList){
+            accountIds.add(con.AccountId);
+        }
+      for(Account acc : ([select Id,Count_Contact__c,(select Id from Contacts) from Account where Id In:accountIds])){
+        Account a = new Account();
+         a.Id = acc.Id;
+         a.Count_Contact__c = acc.Contacts.size();
+        listOfContactUpdate.add(a);
+    }
+         update listOfContactUpdate;
+    }
+     
+
+      public void afetrDeleteUpdate(list<contact> newList){
+        for(Contact con : newList){
+            accountIds.add(con.AccountId);
+        }
+        for(Account acc : ([select Id,Count_Contact__c,(select Id from Contacts) from Account where Id In:accountIds])){
+        Account a = new Account();
+         a.Id = acc.Id;
+        a.Count_Contact__c = acc.Contacts.size();
+        listOfContactUpdate.add(a);
+        }
+          update listOfContactUpdate;
+      }
+   
+}
