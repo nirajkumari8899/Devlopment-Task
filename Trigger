@@ -1,0 +1,10 @@
+trigger ContactTrigger on Contact (after insert,after update,after delete,after undelete) {
+    AccountHandler objAccount = new  AccountHandler();
+    if(trigger.isInsert || trigger.isundelete || trigger.isUpdate){
+        objAccount.afetrInsert(trigger.new);
+    }
+    if(trigger.isDelete){
+      objAccount.afetrDeleteUpdate(trigger.old);  
+    }
+
+}

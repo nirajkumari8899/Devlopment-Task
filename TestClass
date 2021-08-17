@@ -1,0 +1,32 @@
+@istest
+public class AccountHandlarClasstest {
+ @istest    
+    static  void TestMethodOne() 
+    {
+         Account ObjAcc = new Account();
+        ObjAcc.name = 'Test';
+        insert ObjAcc;
+        
+           Account ObjAcc1 = new Account();
+        ObjAcc1.name = 'Test1';
+        insert ObjAcc1;
+        
+        list<contact> lstcon = new list<Contact>();
+        
+        Contact objcon1 = new Contact();
+        objcon1.LastName = 'Test1';
+        objcon1.Accountid = objAcc.id ;
+        lstcon.add(objcon1);
+        
+        Contact objcon2 = new Contact();
+        objcon2.LastName = 'Test2';
+        objcon2.Accountid = objAcc.id ;
+        lstcon.add(objcon2);
+           insert lstcon;
+       
+        
+       
+      Delete objcon1;
+    }
+    
+}
